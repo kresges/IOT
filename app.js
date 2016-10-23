@@ -10,6 +10,6 @@ app.use(express.static(__dirname +'/public'));
 
 app.use('/',routes);
 
-app.listen(process.env.PORT);
+app.listen(process.env.PORT||5000);
 
 
