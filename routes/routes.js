@@ -1,12 +1,24 @@
-var express = require('express');
-var router = express.Router();
+module.exports = function(app,passport){
+  app.get('/', function(req,res){
+    res.render('splash.ejs');
+  });
 
-router.get('/',function(req,res){
-  res.render('index.ejs');
-});
+  app.get('/login', function(req,res){
+    res.render('login.ejs',{ message : req.flash('loginMessage') });
+  });
 
-router.get('/newPage',function(req,res){
-  res.render('newPage.ejs')
-});
+  app.get('/home', isLoggedIn, function(req,res){
+    res.render('index.ejs'); 
+  });
 
-module.exports = router;
+  app.get('/logout', function(req,res){
+    res.logout();
+    res.redirect('/');
+  });
+
+  function isLoggedIn(req,res,next){
+    if (req.isAuthenticated())
+      return next();
+    res.redirect('/');
+  };
+}

@@ -12,34 +12,34 @@ var session = require('express-session');
 var app = express();
 var port = process.env.PORT||5000;
 
-//var configDB = require('./config/database.js');
+var configDB = require('./config/database.js');
 
 //App configuration
-//mongoose.connect(configDB.url);
+mongoose.connect(configDB.local);
 //require('./config/passport.js')(passport);
 
 //Log requests to console
-//app.use(morgan('dev'));
+app.use(morgan('dev'));
 //Must be able to read cookies
-//app.use(cookieParser());
+app.use(cookieParser());
 //Extract info from html forms
-//app.use(bodyParser());
+app.use(bodyParser());
 
-var routes = require('./routes/routes')
+//var routes = require('./routes/routes')
 
 //app.set('views', __dirname + '/views');
 app.set('view engine','ejs');
 
 //Configure passport
-//app.use(session({ secret : 'secret' }));
-//app.use(passport.initialize());
-//app.use(passport.session()); //Persistent login sessions
-//app.use(flash()); //Flash messages in session
+app.use(session({ secret : 'secret' }));
+app.use(passport.initialize());
+app.use(passport.session()); //Persistent login sessions
+app.use(flash()); //Flash messages in session
 
-app.use(express.static(__dirname +'/public'));
+//app.use(express.static(__dirname +'/public'));
 
-app.use('/',routes);
-//require('./routes/routes.js')(app,passport);
+//app.use('/',routes);
+require('./routes/routes.js')(app,passport);
 app.listen(port);
 
 
