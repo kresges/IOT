@@ -16,7 +16,7 @@ var port = process.env.PORT||5000;
 var configDB = require('./config/database.js');
 
 //App configuration
-mongoose.connect(configDB.local);
+mongoose.connect(configDB.url);
 require('./config/passport.js')(passport);
 
 //Log requests to console

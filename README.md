@@ -5,6 +5,7 @@ This is an IOT data visualization web app. It is intended to be a secure access 
   * Set the ./config/database.js file to reflect your local mongoDB connection point.
   * Update app.js to load 'configDB.local'.
   * Run using 'node app.js'.
+
 ## Heroku 
   * Ensure that the 'Procfile' is in the top directory and points to app.js:
     ``` Procfile : web node app.js ```
