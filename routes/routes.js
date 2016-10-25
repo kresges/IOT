@@ -1,4 +1,4 @@
-module.exports = function(app,passport){
+module.exports = function(app,passport,auth){
   app.get('/', function(req,res){
     res.render('splash.ejs');
   });
@@ -15,11 +15,11 @@ module.exports = function(app,passport){
   }));
 
   //Admin routes for creating users
-  app.get('/admin', function(req,res){
+  app.get('/admin', auth.auth, function(req,res){
     res.render('createUser.ejs',{ message : req.flash('createuserMessage') });
   });
 
-  app.post('/admin', passport.authenticate('local-createUser',{
+  app.post('/admin', auth.auth, passport.authenticate('local-createUser',{
     successRedirect : '/home',
     failureRedirect : '/admin',
     failureFlash    : true

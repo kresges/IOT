@@ -2,6 +2,7 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var passport = require('passport');
+var auth = require('./config/auth');
 var flash = require('connect-flash');
 var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -39,7 +40,7 @@ app.use(flash()); //Flash messages in session
 //app.use(express.static(__dirname +'/public'));
 
 //app.use('/',routes);
-require('./routes/routes.js')(app,passport);
+require('./routes/routes.js')(app,passport,auth);
 app.listen(port);
 
 
