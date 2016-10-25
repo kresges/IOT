@@ -11,4 +11,4 @@ This is an IOT data visualization web app. It is intended to be a secure access 
     ``` Procfile : web node app.js ```
   * Set the ./config/database.js file to reflect heroku's mongoDB connection point.
   * Update app.js to load 'configDB.url'.
-  * Run using 'git push heroku master'
+  * Run using 'git push heroku <branch>:master'
